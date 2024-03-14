@@ -187,8 +187,8 @@ if [ ! -d "/Applications/Privileges.app" ]; then
 	jamf policy -forceNoRecon -event "install-privileges"
 fi
 
-status "Installing Vodafone Corporate VPN..."
-log.sh "Installing Vodafone Corporate VPN (BIG-IP)..."
+status "Installing Corporate VPN..."
+log.sh "Installing Corporate VPN (BIG-IP)..."
 if [ ! -d "/Applications/BIG-IP Edge Client.app" ]; then
 	jamf policy -forceNoRecon -event "bvpn"
 fi
