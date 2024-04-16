@@ -17,7 +17,7 @@ wait_for_process_to_start() { until pgrep "${1}" >/dev/null; do sleep 1; done; }
 wait_for_process_to_stop() { while pgrep "${1}" >/dev/null; do sleep 1; done; }
 wait_until_file_exists() { until [ -e "${1}" ]; do sleep 1; done }
 wait_until_string_is_added_to_file() { ( tail -f -n0 "${2}" & ) | grep -q "${1}"; }
-ibm_notify() { asuser "/Library/Management/Applications/IBM Notifier.app/Contents/MacOS/IBM Notifier" -type "popup" -bar_title "XX Org" -help_button_cta_type infopopup -help_button_cta_payload "If you encounter any problems please email MacSupport@vodafone.com.au or call 1300 860 293" -silent -always_on_top -timeout 1800 "${@}"; }
+ibm_notify() { asuser "/Library/Management/Applications/IBM Notifier.app/Contents/MacOS/IBM Notifier" -type "popup" -bar_title "XX Org" -help_button_cta_type infopopup -help_button_cta_payload "If you encounter any problems please email support@organisation.com.au or call 13XX XXX XXX" -silent -always_on_top -timeout 1800 "${@}"; }
 #
 #    Run any command as the currently logged in user:
 #         asuser <command>
@@ -104,8 +104,8 @@ set_automatic_timezone.sh
 
 log.sh "Getting serial number"
 serial="$( system_profiler SPHardwareDataType | grep 'Serial Number (system)' | awk '{print $NF}' )"
-log.sh "Setting computer name to: VODA-${serial}"
-jamf setComputerName -name "VODA-${serial}"
+log.sh "Setting computer name to: MBP-${serial}"
+jamf setComputerName -name "MBP-${serial}"
 
 log.sh "Unloading Jamf Check-in LaunchDaemon"
 launchctl bootout system /Library/LaunchDaemons/com.jamfsoftware.task.1.plist
